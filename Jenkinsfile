@@ -1,4 +1,4 @@
-def ORG = "mayadata"
+def ORG = "mayadataio"
 def REPO = "mysqld-exporter"
 
 pipeline {
