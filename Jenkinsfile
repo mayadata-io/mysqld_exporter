@@ -4,6 +4,22 @@ def REPO = "mysqld-exporter"
 pipeline {
     agent any
     stages {
+        stage('Dependencies'){
+            steps {   
+                script {
+                      sh """    
+                      wget "https://raw.githubusercontent.com/mayadata-io/maya-io-release/master/utils/version_override?token=AHE72NEVS6LPUBOKK7LN5N26JTYYE"
+                      mv version_override?token=AHE72NEVS6LPUBOKK7LN5N26JTYYE version_override
+                      chmod +x version_override
+
+                          
+                      """
+                      TAG = sh (returnStdout: true,script: "./version_override mysqld-exporter ${env.BRANCH_NAME}").trim()
+                      echo "$TAG"
+                 }
+            }
+        }    
+
         stage('Build Image') {
             steps {
                 script {
@@ -23,7 +39,8 @@ pipeline {
                             if (env.BRANCH_NAME == 'master')  {
                                echo "Pushing the image with the tag..."
                                sh "docker login -u${USERNAME} -p${PASSWORD} "
-			                         sh "docker push ${ORG}/${REPO}:ci-${GIT_SHA}"
+
+			                         sh "docker tag ${ORG}/${REPO}:ci-${GIT_SHA} ${ORG}/${REPO}:${TAG} docker push ${ORG}/${REPO}:ci-${TAG}"
                             } else {
 			                   echo "WARNING: Not pushing Image"
                         }
