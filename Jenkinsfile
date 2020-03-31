@@ -21,16 +21,10 @@ pipeline {
                         cd maya-io-release/utils/
                         ls
                         echo"$RELEASE_TAG"
-                        echo"$ONPREM_TAG"
-                        cd ../../
-                        pwd
-
-                        TAG="./maya-io-release/utils/tag_fetch.sh master"
-                        echo"$TAG"
-                        
+                        echo"$ONPREM_TAG"                        
                     """
                     //   TAG = sh (returnStdout: true,script: "./tag_fetch.sh mysqld-exporter ${env.BRANCH_NAME}").trim()
-                    //TAG = sh (returnStdout: true,script: "pwd && ./tag_fetch.sh master").trim()
+                    TAG = sh (returnStdout: true,script: "pwd && ./maya-io-release/utils/tag_fetch.sh master").trim()
                       echo "$TAG"
                  }
             }
