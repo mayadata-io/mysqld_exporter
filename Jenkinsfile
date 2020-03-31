@@ -25,7 +25,7 @@ pipeline {
                         cd ../../
                         pwd
 
-                        TAG=./maya-io-release/utils/tag_fetch.sh master
+                        TAG="./maya-io-release/utils/tag_fetch.sh master"
                         echo $TAG
                         
                     """
