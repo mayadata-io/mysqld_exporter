@@ -24,7 +24,7 @@ pipeline {
                         
                     """
                     //   TAG = sh (returnStdout: true,script: "./tag_fetch.sh mysqld-exporter ${env.BRANCH_NAME}").trim()
-                    TAG = sh (returnStdout: true,script: "./tag_fetch.sh master").trim()
+                    TAG = sh (returnStdout: true,script: "pwd && ./tag_fetch.sh master").trim()
                       echo "$TAG"
                  }
             }
