@@ -20,8 +20,8 @@ pipeline {
                         git clone git@github.com:mayadata-io/maya-io-release.git
                         cd maya-io-release/utils/
                         ls
-                        echo $RELEASE_TAG
-                        echo $ONPREM_TAG                        
+                        echo '$RELEASE_TAG'
+                        echo '$ONPREM_TAG'                        
                     """
                     //   TAG = sh (returnStdout: true,script: "./tag_fetch.sh mysqld-exporter ${env.BRANCH_NAME}").trim()
                     TAG = sh (returnStdout: true,script: "pwd && ./maya-io-release/utils/tag_fetch.sh master").trim()
