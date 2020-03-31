@@ -24,7 +24,7 @@ pipeline {
                         echo '$ONPREM_TAG'                        
                     """
                     //   TAG = sh (returnStdout: true,script: "./tag_fetch.sh mysqld-exporter ${env.BRANCH_NAME}").trim()
-                    TAG = sh (returnStdout: true,script: "pwd && ./maya-io-release/utils/tag_fetch.sh master").trim()
+                    TAG = sh (returnStdout: true,script: "pwd && ./maya-io-release/utils/tag_fetch.sh ${REPO} master").trim()
                       echo "$TAG"
                  }
             }
