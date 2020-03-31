@@ -21,8 +21,10 @@ pipeline {
                         ls
                         echo $RELEASE_TAG
                         echo $ONPREM_TAG
+                        
                     """
-                      TAG = sh (returnStdout: true,script: "./version_override mysqld-exporter ${env.BRANCH_NAME}").trim()
+                    //   TAG = sh (returnStdout: true,script: "./tag_fetch.sh mysqld-exporter ${env.BRANCH_NAME}").trim()
+                    TAG = sh (returnStdout: true,script: "./tag_fetch.sh master").trim()
                       echo "$TAG"
                  }
             }
