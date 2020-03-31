@@ -2,6 +2,7 @@ def ORG = "mayadataio"
 def REPO = "mysqld-exporter"
 def ONPREM_TAG = ""
 def RELEASE_TAG = ""
+def TAG = ""
 pipeline {
     agent any
     stages {
@@ -21,7 +22,7 @@ pipeline {
                         ls
                         echo $RELEASE_TAG
                         echo $ONPREM_TAG
-                        TAG=/tag_fetch.sh master"
+                        TAG=./tag_fetch.sh master"
                         echo $TAG
                         
                     """
