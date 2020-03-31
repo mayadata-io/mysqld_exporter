@@ -1,5 +1,5 @@
 def ORG = "mayadataio"
-def REPO = "mysqld-exporter"
+def REPO = "mysqld_exporter"
 def ONPREM_TAG = "123"
 def RELEASE_TAG = "v222"
 def TAG = ""
