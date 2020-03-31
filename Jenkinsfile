@@ -1,19 +1,27 @@
 def ORG = "mayadataio"
 def REPO = "mysqld-exporter"
-
+def ONPREM_TAG = ""
+def RELEASE_TAG = ""
 pipeline {
     agent any
     stages {
         stage('Dependencies'){
             steps {   
                 script {
-                      sh """    
-                      wget "https://raw.githubusercontent.com/mayadata-io/maya-io-release/master/utils/version_override?token=AHE72NEVS6LPUBOKK7LN5N26JTYYE"
-                      mv version_override?token=AHE72NEVS6LPUBOKK7LN5N26JTYYE version_override
-                      chmod +x version_override
+                    //   sh """    
+                    //   wget "https://raw.githubusercontent.com/mayadata-io/maya-io-release/master/utils/version_override?token=AHE72NEVS6LPUBOKK7LN5N26JTYYE"
+                    //   mv version_override?token=AHE72NEVS6LPUBOKK7LN5N26JTYYE version_override
+                    //   chmod +x version_override
 
                           
-                      """
+                    //   """
+                    sh """
+                        git clone git@github.com:mayadata-io/maya-io-release.git
+                        cd maya-io-release/utils/
+                        ls
+                        echo $RELEASE_TAG
+                        echo $ONPREM_TAG
+                    """
                       TAG = sh (returnStdout: true,script: "./version_override mysqld-exporter ${env.BRANCH_NAME}").trim()
                       echo "$TAG"
                  }
